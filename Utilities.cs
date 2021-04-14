@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,9 +10,7 @@ namespace ReadingTable
 {
     public class Utilities
     {
-
         static List<TableDataCollection> _tableDataCollection = new List<TableDataCollection>();
-
 
         public static void ReadTable(IWebElement table)
         {
@@ -36,18 +34,23 @@ namespace ReadingTable
                     _tableDataCollection.Add(new TableDataCollection
                     {
                         RowNumber = rowIndex,
-                        //ColumnName = columns[colIndex].Text,
+                        //ColumnName = columns[colIndex].Text,   //enable this when using SimpleTable.html
+                        
+                        
                     //For complex tables
                         ColumnName = columns[colIndex].Text != "" ?
                                      columns[colIndex].Text : colIndex.ToString(),
                     //..
+                        
+                        
                         ColumnValue = colValue.Text,
-                        //For complex tables
+                        
+                    //For complex tables
                         ColumnSpecialValues = colValue.Text != "" ? null :
                                               colValue.FindElements(By.TagName("input"))
                     //..
+                                                  
                     });
-
                     //Move to next column
                     colIndex++;
                 }
@@ -71,15 +74,12 @@ namespace ReadingTable
                 var cell = (from e in _tableDataCollection
                             where e.ColumnName == columnIndex && e.RowNumber == rowNumber
                             select e.ColumnSpecialValues).SingleOrDefault();
-            
-
                 //Operate on those controls
                 if(controlToOperate != null && cell != null)
                 {
                     var returnedControl = (from c in cell
                                            where c.GetAttribute("value") == controlToOperate
                                            select c).SingleOrDefault();
-
                     returnedControl?.Click();
                 }
                 else
