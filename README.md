@@ -1,4 +1,4 @@
-# Selenium-with-C-
+# Selenium-C-HTML-tables
 Small project showing how to use Selenium C# to interact with HTML tables 
 
 **Documentation**
