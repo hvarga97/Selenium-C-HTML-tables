@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,5 @@ namespace ReadingTable
         [FindsBy(How = How.XPath, Using ="//table")]
 
         public IWebElement table { get; set; }
-
     }
 }
